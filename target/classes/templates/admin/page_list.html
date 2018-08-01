@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='Article management',active='page'">
+<header th:replace="admin/header::headerFragment(${title},${active})"></header>
+<body class="fixed-left">
+<div id="wrapper">
+    <div th:replace="admin/header::header-body"></div>
+    <div class="content-page">
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4 class="page-title">Article management</h4>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="pull-right">
+                            <a th:href="@{/admin/page/new}" class="btn btn-success waves-effect waves-light m-b-5">Add a new page</a>
+                        </div>
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Page name</th>
+                                <th>Page path</th>
+                                <th width="20%">Release time</th>
+                                <th width="12%">Publish status</th>
+                                <th>Operation</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <th:block th:each="post : ${articles.list}">
+                                <tr th:cid="${post.cid}">
+                                    <td th:text="${post.title}"></td>
+                                    <td th:text="${post.slug}"></td>
+                                    <td th:text="${commons.fmtdate(post.created, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                                    <td>
+                                        <th:block th:if="${post.status == 'publish'}" th:text="Published"/>
+                                        <th:block th:if="${post.status == 'draft'}" th:text="Draft"/>
+                                    </td>
+                                    <td>
+                                        <a th:href="@{'/admin/page/'+${post.cid}}" class="btn btn-primary btn-sm waves-effect waves-light m-b-5"><i
+                                                class="fa fa-edit"></i> <span>Edit</span></a>
+                                        <a href="javascript:void(0)" th:onclick="'delPost('+${post.cid}+');'"
+                                           class="btn btn-danger btn-sm waves-effect waves-light m-b-5"><i
+                                                class="fa fa-trash-o"></i> <span>Delete</span></a>
+                                        <a class="btn btn-warning btn-sm waves-effect waves-light m-b-5" th:href="@{'/'+${post.slug}}"
+                                           target="_blank"><i
+                                                class="fa fa-rocket"></i> <span>Preview</span></a>
+                                    </td>
+                                </tr>
+                            </th:block>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div th:replace="admin/footer :: footer-content"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="admin/footer :: footer"></div>
+<script type="text/javascript">
+    /*<![CDATA[*/
+    var tale = new $.tale();
+    function delPost(cid) {
+        tale.alertConfirm({
+            title:'Are you sure you want to delete this page?',
+            then: function () {
+                tale.post({
+                    url : '/admin/page/delete',
+                    data: {cid: cid},
+                    success: function (result) {
+                        if(result && result.success){
+                            tale.alertOkAndReload('Page deleted successfully');
+                        } else {
+                            tale.alertError(result.msg || 'Page deletion failed');
+                        }
+                    }
+                });
+            }
+        });
+    }
+    /*]]>*/
+</script>
+</body>
+</html>

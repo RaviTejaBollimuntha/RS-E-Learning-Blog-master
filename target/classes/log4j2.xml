@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- In the xml configuration,the xml element is insensitive to case -->
+<!-- status="off",log4j2 record its own events to the console configuration, off means no record, the rest of the record trace, debug, info, warn, error, fatal -->
+<!-- monitorInterval indicates the time in seconds to detect changes to the configuration,with a minimum interval of 5 seconds, 0 or a negative number indicating no detection -->
+<configuration name="test-cfg" status="off" monitorInterval="0">
+
+   <!-- Constant reference -->
+    <properties>
+        <!--<property name="LOG_HOME">/opt/logs/api-logs/</property>-->
+        <property name="LOG_HOME">./logs</property>
+        <property name="FORMAT">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</property>
+    </properties>
+
+    <!-- appender Used to receive various logs -->
+    <appenders>
+        <!-- Common output to console, commonly used in the development environment, the default is system_err, and a system_out -->
+        <console name="console" target="system_out">
+            <!-- appender Level of log filtering -->
+            <!-- <thresholdFilter level="info" onMatch="accept" onMismatch="deny"/> -->
+            <patternLayout pattern="${FORMAT}"/>
+        </console>
+        <!-- Commonly used in the development environment, log in to the file, the default append -->
+        <file name="db_log" fileName="${LOG_HOME}/rsel-db.log" append="true">
+            <patternLayout pattern="${FORMAT}"/>
+        </file>
+        <file name="service_log" fileName="${LOG_HOME}/rsel-info.log" append="true">
+            <patternLayout pattern="${FORMAT}"/>
+        </file>
+    </appenders>
+
+    <!-- Receiving. appender -->
+    <loggers>
+        <logger name="org.apache.http" level="warn"/>
+        <!-- Spring -->
+        <logger name="org.springframework" level="WARN"/>
+        <!-- mybatis loggers -->
+        <logger name="com.ibatis" level="DEBUG"/>
+        <logger name="com.ibatis.common.jdbc.SimpleDataSource" level="DEBUG"/>
+        <logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG"/>
+        <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG"/>
+        <!-- sql loggers -->
+        <logger name="java.sql.Connection" level="DEBUG" additivity="true"/>
+        <logger name="java.sql.Statement" level="DEBUG" additivity="true"/>
+        <logger name="java.sql.PreparedStatement" level="=debug,stdout" additivity="true"/>
+        <logger name="java.sql.ResultSet" level="DEBUG" additivity="true"/>
+        <logger name="org.apache" level="WARN"/>
+
+        <!-- More detailed configuration of the package -->
+        <!-- additivity indicates whether to append it to prevent duplicates because root has received it once -->
+        <logger name="com.rsel.dao" level="DEBUG" additivity="true">
+            <appender-ref ref="db_log"/>
+        </logger>
+        <logger name="com.rsel.controller" level="DEBUG" additivity="false">
+            <appender-ref ref="service_log"/>
+        </logger>
+        <logger name="com.rsel.service" level="DEBUG" additivity="false">
+            <appender-ref ref="service_log"/>
+        </logger>
+        <!-- root logger,一 generally used to place all appender -->
+        <root level="DEBUG">
+            <appender-ref ref="db_log"/>
+            <appender-ref ref="console"/>
+        </root>
+    </loggers>
+
+</configuration>
