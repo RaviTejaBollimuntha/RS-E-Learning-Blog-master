@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="slider">
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+<body>
+<div class="w3-content w3-section" style="max-width: 900%">
+  <img class="mySlides" th:src="@{/user/img/1.jpg}" width="100%" height="440"/>
+  <img class="mySlides" th:src="@{/user/img/2.jpg}" width="100%" height="440"/>
+  <img class="mySlides" th:src="@{/user/img/3.jpg}" width="100%" height="440"/>
+  <img class="mySlides" th:src="@{/user/img/4.jpg}" width="100%" height="440"/>
+  <img class="mySlides" th:src="@{/user/img/5.jpg}" width="100%" height="440"/>  
+</div>
+
+<script th:src="@{/admin/js/slider.js}"></script>
+</body>
+</html>

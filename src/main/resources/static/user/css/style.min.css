@@ -686,8 +686,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 	-webkit-animation: fade-in .5s;
 	animation: fade-in;
 	animation-duration: .5s
+	
 }
-
 .index-page {
 	padding: 120px 20px 0
 }
@@ -696,12 +696,12 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 	position: relative;
 	display: block;
 	overflow: hidden
+	
 }
 
 .post-lists-body {
 	display: block
 }
-
 .post-list-item {
 	float: left;
 	width: 33.3333%;
@@ -843,7 +843,10 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 	max-width: 700px;
 	padding: 130px 25px 20px
 }
-
+.post-page1 {
+	max-width: 2000px;	
+	padding: 30px 0px 0px
+}
 .post-content p {
 	font-size: 14px;
 	word-wrap: break-word;
@@ -1068,7 +1071,31 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 	border: 1px solid #eaeaea;
 	border-radius: 50%
 }
+/* Split the screen in half */
+.split-left {
+  height:100%;
+  width:60%;  
+  top: 0;
+  overflow-x: hidden;  
+}
+.split-right {
+  height:100%;
+  width: 40%;  
+  top: 0;
+  overflow-x: hidden;  
+}
 
+/* Control the left side */
+.left {
+  left: 0;
+  background-color: #ffffff;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  background-color: #ffffff;
+}
 .archive-page {
 	padding: 120px 20px 40px
 }
@@ -1078,7 +1105,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 	position: relative;
 	margin: 10px auto;
 	padding: 0 30px;
-	color: #5f5f5f
+	color: #ff80c0
 }
 
 .archive-page .categorys-title a {
@@ -1096,8 +1123,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 .archive-page .post-list-item-container {
 	border: 1px solid rgba(184, 197, 214, .2);
-	border-radius: 3px;
-	background: #fff;
+	border-radius: 10px;
+	background: #c0c0c0;
 	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
 	box-shadow: 0 1px 4px rgba(0, 0, 0, .04)
 }
@@ -1114,7 +1141,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 	overflow: hidden;
 	white-space: normal;
 	text-overflow: ellipsis;
-	color: #313131
+	color: #ff8000
 }
 
 .archive-page .post-list-item-container .item-label .item-meta .item-meta-date

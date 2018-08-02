@@ -180,23 +180,22 @@ public class SiteServiceImpl implements ISiteService {
     @Override
     public List<ArchiveBo> getArchives() {
         LOGGER.debug("Enter getArchives method");
-        List<ArchiveBo> archives = contentDao.findReturnArchiveBo();
+        List<ArchiveBo> archives = contentDao.findReturnArchiveBo();       
         if (null != archives) {
             archives.forEach(archive -> {
                 ContentVoExample example = new ContentVoExample();
                 ContentVoExample.Criteria criteria = example.createCriteria().andTypeEqualTo(Types.ARTICLE.getType()).andStatusEqualTo(Types.PUBLISH.getType());
                 example.setOrderByClause("created desc");
-                String date = archive.getDate();
-                System.out.println(date);
+                String date = archive.getDate();               
                 Date sd = DateKit.dateFormat(date, "yyyy-MM-dd");
-                int start = DateKit.getUnixTimeByDate(sd);
-                int end = DateKit.getUnixTimeByDate(DateKit.dateAdd(DateKit.INTERVAL_MONTH, sd, 1)) - 1;
+                int start = DateKit.getUnixTimeByDate(sd);                
+                int end = DateKit.getUnixTimeByDate(DateKit.dateAdd(DateKit.INTERVAL_DAY, sd, 1)) - 1;                
                 criteria.andCreatedGreaterThan(start);
                 criteria.andCreatedLessThan(end);
                 List<ContentVo> contentss = contentDao.selectByExample(example);
                 archive.setArticles(contentss);
             });
-        }
+        }        
         LOGGER.debug("Exit getArchives method");
         return archives;
     }

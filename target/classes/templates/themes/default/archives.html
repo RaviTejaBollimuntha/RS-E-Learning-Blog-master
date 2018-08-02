@@ -2,31 +2,37 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="themes/default/header::header(title='Article Posting',keywords=null)"></div>
 <body>
+<div class="main-content post-page1"><img th:src="@{/user/img/1.jpg}" alt="logo"/></div>
+<div  class="split-left left">
 <div class="main-content archive-page clearfix">
-    <div class="categorys-item">
+    <div style="margin-left: 100px">
+      <h1><b>Blog Recent Posts...</b></h1>
         <th:block th:each="archive : ${archives}">
             <div class="categorys-title" th:text="${archive.date}"></div>
             <div class="post-lists">
-                <div class="post-lists-body">
+                <div class="post-lists-body" style="height: 158px; ">
                     <th:block th:each="article : ${archive.articles}">
                         <div class="post-list-item">
-                            <div class="post-list-item-container">
-                                <div class="item-label">
+                            <div class="post-list-item-container" style="width: 554px; ">
+                                <div class="item-label" style="width: 1155px; ">
                                     <div class="item-title">
-                                        <a th:href="${commons.permalink(article.cid, article.slug)}" th:text="${article.title}"></a>
+                                       <b> <a th:href="${commons.permalink(article.cid, article.slug)}" th:text="${article.title}"></a></b>
                                     </div>
-                                    <div class="item-meta clearfix">
-                                        <div class="item-meta-date">posted on <th:block th:text="${commons.fmtdate(article.created)}"/></div>
-                                    </div>
+                                    <div class="item-meta clearfix" style="width: 1180px; ">
+                                        <div class="item-meta-date" style="width: 562px; "><b>posted on :</b><th:block th:text="${commons.fmtdate(article.created)}"/></div>
+                                    </div>                                    
                                 </div>
-                            </div>
+                            </div>                            
                         </div>
-                    </th:block>
+                        <br/><br/> <br/> <br/> <br/> <br/>                       
+                    </th:block>                    
                 </div>
             </div>
         </th:block>
-    </div>
+    </div>    
 </div>
+</div>
+<div class="split-right right">,,</div>
 </body>
 <div th:replace="themes/default/footer::footer"></div>
 </html>

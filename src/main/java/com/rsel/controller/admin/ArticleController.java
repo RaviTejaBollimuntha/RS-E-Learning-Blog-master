@@ -81,7 +81,7 @@ public class ArticleController extends BaseController {
         contents.setAuthorId(users.getUid());
         contents.setType(Types.ARTICLE.getType());
         if (StringUtils.isBlank(contents.getCategories())) {
-            contents.setCategories("默认分类");
+            contents.setCategories("default category");
         }
         String result = contentsService.publish(contents);
         if (!WebConst.SUCCESS_RESULT.equals(result)) {

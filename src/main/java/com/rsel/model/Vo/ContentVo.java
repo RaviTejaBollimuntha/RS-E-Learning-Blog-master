@@ -215,4 +215,14 @@ public class ContentVo implements Serializable {
     public void setContent(String content) {
         this.content = content;
     }
+
+	@Override
+	public String toString() {
+		return "ContentVo [cid=" + cid + ", title=" + title + ", slug=" + slug + ", created=" + created + ", modified="
+				+ modified + ", authorId=" + authorId + ", type=" + type + ", status=" + status + ", tags=" + tags
+				+ ", categories=" + categories + ", hits=" + hits + ", commentsNum=" + commentsNum + ", allowComment="
+				+ allowComment + ", allowPing=" + allowPing + ", allowFeed=" + allowFeed + ", content=" + content + "]";
+	}
+   
+    
 }
