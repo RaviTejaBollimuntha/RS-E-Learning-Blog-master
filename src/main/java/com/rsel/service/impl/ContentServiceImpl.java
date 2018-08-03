@@ -175,7 +175,7 @@ public class ContentServiceImpl implements IContentService {
             relationshipService.deleteById(cid, null);
             return WebConst.SUCCESS_RESULT;
         }
-        return "数据为空";
+        return "data is empty";
     }
 
     @Override

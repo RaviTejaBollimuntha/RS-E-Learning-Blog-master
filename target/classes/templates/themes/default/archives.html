@@ -32,7 +32,35 @@
     </div>    
 </div>
 </div>
-<div class="split-right right">,,</div>
+<div class="split-right right">
+<br/><br/>
+<div  style="border-radius: 20px; border-right-style: solid; border-top-width: 0.5px; border-bottom-color: #C0C0C0; border-right-width: 0.5px; border-left-color: #C0C0C0; border-right-color: #C0C0C0; border-left-width: 0.5px; border-top-style: solid; border-left-style: solid; border-bottom-width: 0.5px; border-top-color: #C0C0C0; border-bottom-style: solid">
+<h1 align="center" style="border-radius: 20px; background-color: #FF8000; border-bottom-color: #C0C0C0; width: auto; border-bottom-width: thin; border-bottom-style: solid; color: #FFFFFF"><b>Search articles</b></h1> 
+<br/> 
+<div align="center"> 
+   <form action="/search">                        
+    <input name="keyword" type="text" placeholder="Enter the subject you want to find...." style="width: 314px; border-right-style: solid; border-bottom-color: DarkGray; border-top-width: thin; border-left-style: solid; border-right-width: medium; border-left-color: DarkGray; border-bottom-width: medium; border-top-color: DarkGray; border-bottom-style: solid; border-right-color: DarkGray; border-left-width: thin; border-top-style: solid; height: 40px"/>
+      
+         <button style="border: 2px green; color: White; background-color: #FF8000; width: 101px; height: 41px" type="submit">Search</button>
+      
+    </form>
+ </div>
+ <br/>
+</div>
+<br/><br/>
+<div  style="border-radius: 20px; border-right-style: solid; border-top-width: 0.5px; border-bottom-color: #C0C0C0; border-right-width: 0.5px; border-left-color: #C0C0C0; border-right-color: #C0C0C0; border-left-width: 0.5px; border-top-style: solid; border-left-style: solid; border-bottom-width: 0.5px; border-top-color: #C0C0C0; border-bottom-style: solid">
+<h1 align="center" style="border-radius: 20px; background-color: #FF8000; border-bottom-color: #C0C0C0; width: auto; border-bottom-width: thin; border-bottom-style: solid; color: #FFFFFF"><b>Categories / Tags</b></h1> 
+<br/> 
+ <div align="center"> 
+  <div id="post-content" class="post-content">
+  <th:block th:each="archive : ${archives}">  
+        <p class="post-tags" th:utext="${commons.show_catg_tags(archive.articles)}"></p>    
+  </th:block>    
+    </div> 
+ </div>
+ <br/>
+</div>
+</div>
 </body>
 <div th:replace="themes/default/footer::footer"></div>
 </html>

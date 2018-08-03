@@ -277,7 +277,7 @@ public class IndexController extends BaseController {
          */
     @GetMapping(value = "archives")
     public String archives(HttpServletRequest request) {
-        List<ArchiveBo> archives = siteService.getArchives();
+        List<ArchiveBo> archives = siteService.getArchives();		
         request.setAttribute("archives", archives);
         return this.render("archives");
     }
@@ -325,8 +325,8 @@ public class IndexController extends BaseController {
          * @param keyword
          * @return
          */
-    @GetMapping(value = "search/{keyword}")
-    public String search(HttpServletRequest request, @PathVariable String keyword, @RequestParam(value = "limit", defaultValue = "12") int limit) {
+    @GetMapping(value = "search")
+    public String search(HttpServletRequest request, @RequestParam String keyword, @RequestParam(value = "limit", defaultValue = "12") int limit) {
         return this.search(request, keyword, 1, limit);
     }
 

@@ -662,7 +662,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 	border: none;
 	border-radius: 3px
 }
-
 .navbar-search form .search-box input {
 	font-size: 14px;
 	line-height: 30px;
@@ -1076,7 +1075,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   height:100%;
   width:60%;  
   top: 0;
-  overflow-x: hidden;  
+  overflow-x: hidden;
 }
 .split-right {
   height:100%;
@@ -1088,7 +1087,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 /* Control the left side */
 .left {
   left: 0;
-  background-color: #ffffff;
+  background-color: #ffffff; 
 }
 
 /* Control the right side */
@@ -1097,7 +1096,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   background-color: #ffffff;
 }
 .archive-page {
-	padding: 120px 20px 40px
+	padding: 120px 20px 40px	
 }
 
 .archive-page .categorys-title {

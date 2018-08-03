@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,7 +26,7 @@ import java.util.regex.Pattern;
 public final class Commons {
 
     public static String THEME = "themes/default";
-
+    public static List<String> tag;
     /**
          * Determine if there is data in the page
          *
@@ -207,9 +209,9 @@ public final class Commons {
         if (StringUtils.isNotBlank(categories)) {
             String[] arr = categories.split(",");
             StringBuffer sbuf = new StringBuffer();
-            for (String c : arr) {
+            for (String c : arr) {            	
                 sbuf.append("<a href=\"/category/" + URLEncoder.encode(c, "UTF-8") + "\">" + c + "</a>");
-            }
+            	}           
             return sbuf.toString();
         }
         return show_categories("default category");
@@ -223,14 +225,26 @@ public final class Commons {
          */
     public static String show_tags(String tags) throws UnsupportedEncodingException {
         if (StringUtils.isNotBlank(tags)) {
-            String[] arr = tags.split(",");
-            StringBuffer sbuf = new StringBuffer();
-            for (String c : arr) {
+            String[] arr = tags.split(",");            
+            StringBuffer sbuf = new StringBuffer();            
+            for (String c : arr) {         	       	
                 sbuf.append("<a href=\"/tag/" + URLEncoder.encode(c, "UTF-8") + "\">" + c + "</a>");
-            }
+            	}
+            
             return sbuf.toString();
         }
         return "";
+    }
+    public static String show_catg_tags(List<ContentVo> tags) throws UnsupportedEncodingException {
+            tag=new ArrayList<>();
+            StringBuffer sbuf = new StringBuffer(); 
+            for(ContentVo cvo:tags) {		
+            String[] arr = cvo.getTags().split(",");  
+            for (String c : arr) {         	       	
+                sbuf.append("<a href=\"/tag/" + URLEncoder.encode(c, "UTF-8") + "\">" + c + "</a>");
+            	}          
+            }        
+            return sbuf.toString();
     }
 
     /**
